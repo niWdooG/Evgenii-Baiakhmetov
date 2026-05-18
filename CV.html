@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<!-- ADDED data-bs-theme="light" for Bootstrap 5.3's native dark mode support -->
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Personal portfolio">
+    <title>Evgenii Baiakhmetov | CV</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- CSS for the DNA Matrix Easter Egg & Toggle Button -->
+    <style>
+        #matrixCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 9999; /* Ensures it covers everything */
+            pointer-events: none; /* Allows clicking through the code */
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        /* =========================================================
+           TOGGLE BUTTON COLOR CONTROLS (Matched with index.html)
+           ========================================================= */
+        .form-check-input {
+            background-color: #ADB5BD !important;
+            border-color: #ADB5BD !important;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23ffffff'/%3e%3c/svg%3e") !important;
+        }
+        .form-check-input:checked {
+            background-color: #ADB5BD !important;
+            border-color: #ADB5BD !important;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23000000'/%3e%3c/svg%3e") !important;
+        }
+        .form-check-input:focus {
+            box-shadow: none !important; 
+            outline: none !important; 
+        }
+        /* ========================================================= */
+    </style>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- Matrix Canvas (Hidden by default) -->
+    <canvas id="matrixCanvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-3" href="index.html">
+                Evgenii Baiakhmetov
+                <!-- ADDED id="matrixLogo" -->
+                <img src="logo.svg"
+                     id="matrixLogo"
+                     alt="Evgenii Baiakhmetov" 
+                     class="rounded-circle flex-shrink-0"
+                     style="width: 1.8em; height: 1.8em; object-fit: cover; border: 2px solid #fff;">
+            </a>
+            
+            <!-- Mobile Menu Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center gap-3 gap-lg-2">
+                    <li class="nav-item"><a class="nav-link active" href="cv.html">CV</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Research_Output.html">Research Output</a></li>
+                    <li class="nav-item"><a class="nav-link" href="fieldwork.html">Fieldwork</a></li>
+                    <li class="nav-item"><a class="nav-link" href="procrastination.html">Procrastination</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+
+                    <li class="nav-item theme-toggle-wrapper d-flex align-items-center">
+                        <div class="form-check form-switch m-0 d-flex align-items-center">
+                            <input class="form-check-input mt-0" type="checkbox" id="theme-toggle" role="switch">
+                            <label class="form-check-label text-white ms-2" for="theme-toggle"></label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow-1 container py-5" style="padding-bottom: 100px !important;">  
+
+        <!-- Education Section -->
+        <section class="mb-3">
+            <h2 class="fw-bold fs-2 border-bottom pb-2">Education</h2>
+            <ul class="fs-5 mt-3">
+                <li class="mb-2">
+                    <strong>PhD in Biology</strong> <br>
+                    <span class="text-muted fs-6"> Jagiellonian University, Krakow (Poland) | 2017 - 2022</span>
+                    <p class="mb-0 fs-6">Inferring hybridisation and introgression processes within Stipa (Poaceae)</p>
+                </li>
+                <li class="mb-2">
+                    <strong>M.Sc. in Biology</strong> <br>
+                    <span class="text-muted fs-6">Tomsk State University and Institute of Medical Genetics, Tomsk (Russia) | 2012 - 2014</span>
+                <p class="mb-0 fs-6">Screening for epigenetic markers of fetal trisomy 21 in the first trimester</p>
+                </li>
+                <li class="mb-2">
+                    <strong>Attendee (Visiting Student) of BS courses in Biology</strong> <br>
+                    <span class="text-muted fs-6">Tomsk State University, Tomsk (Russia) | 2011 - 2012</span>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Work Experience Section -->
+        <section class="mb-3">
+            <h2 class="fw-bold fs-2 border-bottom pb-2">Work Experience</h2>
+            <ul class="fs-5 mt-3">
+                <li class="mb-2">
+                    <strong>Special Research Assistant</strong> <br>
+                    <span class="text-muted fs-6">XTBG, CAS (China) | 2023 - Present</span>
+                    <ul class="fs-6 mt-2">
+                        <li>Evolutionary biology research on grasses</li>
+                        <li>Bioinformatics analyses</li>
+                    </ul>
+                </li>
+                <li class="mb-2">
+                    <strong>Junior Research Scientist</strong> <br>
+                    <span class="text-muted fs-6">Laboratory of structural and molecular analyses of plants, TSU (Russia) | 2014 - 2022</span>
+                    <ul class="fs-6 mt-2">
+                        <li>Integrative taxonomy of grasses</li>
+                        <li>Molecular analyses</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Teaching Experience Section -->
+        <section class="mb-3">
+            <h2 class="fw-bold fs-2 border-bottom pb-2">Teaching Experience</h2>
+            <ul class="fs-5 mt-3">
+                <li class="mb-2">
+                    <strong>The course Diversity and Evolution of Plants (Seminars)</strong> <br>
+                    <span class="text-muted fs-6">Jagiellonian University, Krakow (Poland) | 2020 - 2023</span>
+                    <ul class="fs-6 mt-2">
+                        <li>Speciation and hybridisation in plants</li>
+                        <li>Applying integrative taxonomy as a tool for revealing hybridisation events in plants</li>
+                    </ul>
+                </li>
+                <li class="mb-2">
+                    <strong>The workshop Introduction to Bioinformatics and Omics Data Analysis</strong> <br>
+                    <span class="text-muted fs-6">XTBG, CAS (China) | 2025 - Present</span>
+                    <ul class="fs-6 mt-2">
+                        <li>Practical de novo genome assembly</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Mobility & Training Section -->
+        <section class="mb-3">
+            <h2 class="fw-bold fs-2 border-bottom pb-2">International Mobility & Advanced Training</h2>
+            <ul class="fs-5 mt-2">
+                <li class="mb-2">Major Research Internships</li>
+                    <ul class="fs-6 mt-2">
+                        <li><span class="text-muted">Jagiellonian University (Poland) | 2022</span>
+                        <p class="mb-0">Bioinformatics internship in the Laboratory of Bioinformatics and Genome Biology</p></li>
+                        
+                        <li class="mt-2"><span class="text-muted">High Polytechnic School of Huesca (Spain) | 2021</span>
+                        <p class="mb-0">Methodological and bioinformatics internship in the Plant Systematics and Evolution laboratory</p></li>
+                        
+                        <li class="mt-2"><span class="text-muted">iDiv (Germany) | 2019</span>
+                        <p class="mb-0">Bioinformatics internship in the Bioinformatics Unit</p></li>
+                        
+                        <li class="mt-2"><span class="text-muted">High Polytechnic School of Huesca (Spain) | 2014</span>
+                        <p class="mb-0">Genome assembling of Next Generation Sequencing Illumina sequences and analysis of RAD data (SNPs) of Brachypodium</p></li>
+                    </ul>
+                <li class="mb-2 mt-3">Selected Advanced Workshops</li>
+                    <ul class="fs-6 mt-2">
+                        <li>Population Genomics Workshop, XTBG (China) | 2025</li>
+                        <li>ForBio metabarcoding, Tromsø University Museum (Norway) | 2018</li>
+                    </ul>
+            </ul>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3 fixed-bottom">
+        &copy; 2026. Publish or Perish Enterprise. All Rights Reversed.
+    </footer>
+
+    <!-- Bootstrap JS + your script.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+
+    <!-- DNA Matrix Easter Egg Script -->
+    <script>
+        (function() {
+            const canvas = document.getElementById('matrixCanvas');
+            const ctx = canvas.getContext('2d');
+            const matrixLogo = document.getElementById('matrixLogo');
+
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            // DNA Bases + Numbers
+            const latin = 'ACGT';
+            const nums = '012-9';
+            const alphabet = latin + nums;
+
+            const fontSize = 16;
+            let columns = canvas.width / fontSize;
+            let drops = [];
+            
+            // FIX: Randomize the starting positions of the drops so they fall asynchronously from the very first frame!
+            for (let x = 0; x < columns; x++) {
+                drops[x] = Math.floor(Math.random() * (canvas.height / fontSize)); 
+            }
+
+            let matrixInterval;
+            let isMatrixActive = false;
+
+            const drawMatrix = () => {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                ctx.fillStyle = '#0F0'; 
+                ctx.font = fontSize + 'px monospace';
+                
+                for (let i = 0; i < drops.length; i++) {
+                    const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                    
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    drops[i]++;
+                }
+            };
+
+            const startMatrix = () => {
+                if (!isMatrixActive) { 
+                    isMatrixActive = true; 
+                    canvas.style.opacity = '1'; 
+                    matrixInterval = setInterval(drawMatrix, 33); 
+                }
+            };
+
+            const stopMatrix = () => {
+                if (isMatrixActive) {
+                    isMatrixActive = false; 
+                    canvas.style.opacity = '0';
+                    setTimeout(() => { 
+                        if (!isMatrixActive) { 
+                            clearInterval(matrixInterval); 
+                            ctx.clearRect(0, 0, canvas.width, canvas.height); 
+                        } 
+                    }, 500);
+                }
+            };
+
+            // DESKTOP: Trigger on mouse hover
+            window.addEventListener('mousemove', (e) => {
+                if (!matrixLogo) return;
+                const rect = matrixLogo.getBoundingClientRect();
+                const logoX = rect.left + rect.width / 2;
+                const logoY = rect.top + rect.height / 2;
+                
+                const distance = Math.hypot(e.clientX - logoX, e.clientY - logoY);
+                
+                if (distance < 80) {
+                    startMatrix();
+                } else {
+                    stopMatrix();
+                }
+            });
+
+            // MOBILE: Trigger on tap (Runs for 4 seconds then fades out)
+            if (matrixLogo) {
+                matrixLogo.addEventListener('touchstart', (e) => {
+                    startMatrix();
+                    setTimeout(stopMatrix, 4000);
+                }, { passive: true });
+            }
+
+            // Keep canvas sized correctly on rotation
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                columns = canvas.width / fontSize;
+                drops = [];
+                // FIX: Ensure resizing also applies random staggers
+                for (let x = 0; x < columns; x++) {
+                    drops[x] = Math.floor(Math.random() * (canvas.height / fontSize));
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

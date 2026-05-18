@@ -1,0 +1,180 @@
+/* style.css */
+html {
+    scroll-behavior: smooth; /* Smooth scrolling for nav links */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+section {
+    padding: 0px 0; /* Add breathing room to sections */
+}
+
+/* Add a hover effect to project cards */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* style.css */
+body {
+    transition: background-color 1.2s ease, color 0.05s ease;
+}
+
+/* =============== PERFECT THEME TOGGLE SWITCH =============== */
+
+/* 1. The Track (Background) and Circle Color when OFF */
+.form-switch .form-check-input {
+    background-color: #ADB5BD; /* OFF track color (Red/Gray) */
+    border-color: #212529;
+    
+    /* Change the OFF circle color here. %23ffffff means #ffffff (White) */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23ffffff'/%3e%3c/svg%3e") !important;
+}
+
+/* 2. The Track (Background) and Circle Color when ON (Checked) */
+.form-switch .form-check-input:checked {
+    background-color: #ADB5BD; /* ON track color (Yellow) */
+    border-color: #212529;
+    
+    /* Change the ON circle color here. %23000000 means #000000 (Black) */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23000000'/%3e%3c/svg%3e") !important;
+}
+
+/* Remove the ugly default blue glow when clicking */
+.form-switch .form-check-input:focus {
+    box-shadow: 0 0 0 0.25rem #212529; /* Soft yellow glow */
+}
+
+/* Optional: tiny hover effect for extra polish */
+.form-switch .form-check-input:hover {
+    cursor: pointer;
+    opacity: 0.95;
+}
+
+/* =============== CONTACT BUTTONS - BLACK & WHITE (auto-switches with theme) =============== */
+.social-btn,
+.email-btn {
+    transition: all 0.3s ease;
+}
+
+/* Light mode (default) */
+[data-bs-theme="light"] .social-btn {
+    color: #212529 !important;
+    border-color: #212529 !important;
+}
+
+[data-bs-theme="light"] .email-btn {
+    background-color: #212529 !important;
+    color: #fff !important;
+    border-color: #212529 !important;
+}
+
+/* Dark mode */
+[data-bs-theme="dark"] .social-btn {
+    color: #f8f9fa !important;
+    border-color: #f8f9fa !important;
+}
+
+[data-bs-theme="dark"] .email-btn {
+    background-color: #f8f9fa !important;
+    color: #212529 !important;
+    border-color: #f8f9fa !important;
+}
+
+/* Hover effect (subtle and theme-aware) */
+.social-btn:hover,
+.email-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* =============== UNIFIED CONTACT BUTTONS — SOLID + THEME-FLIPPING =============== */
+
+.contact-btn {
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+/* Light mode: dark background, white text */
+[data-bs-theme="light"] .contact-btn {
+    background-color: #212529 !important;     /* black / very dark */
+    color: #ffffff !important;
+    border-color: #212529 !important;
+}
+
+/* Dark mode: light background, dark text */
+[data-bs-theme="dark"] .contact-btn {
+    background-color: #f8f9fa !important;     /* white / very light */
+    color: #212529 !important;
+    border-color: #f8f9fa !important;
+}
+
+/* Hover effect — slightly lighter/darker depending on theme */
+[data-bs-theme="light"] .contact-btn:hover {
+    background-color: #343a40 !important;     /* slightly lighter dark */
+    transform: translateY(-2px);
+}
+
+[data-bs-theme="dark"] .contact-btn:hover {
+    background-color: #e9ecef !important;     /* slightly darker white */
+    transform: translateY(-2px);
+}
+
+/* Focus ring — theme-aware, no blue */
+.contact-btn:focus-visible {
+    box-shadow: 0 0 0 0.25rem rgba(33, 37, 41, 0.35) !important;
+}
+
+[data-bs-theme="dark"] .contact-btn:focus-visible {
+    box-shadow: 0 0 0 0.25rem rgba(248, 249, 250, 0.4) !important;
+}
+
+/* FINAL TOGGLE ALIGNMENT – locks it to the exact same line as CV / Articles etc. */
+.navbar-nav .nav-item:last-child {
+    padding-top: 0.12rem !important;
+}
+
+.form-switch {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    line-height: 1.5;
+}
+
+<style>
+    /* Defines the blinking animation */
+    @keyframes blink-animation {
+        50% { opacity: 0; }
+    }
+
+    /* Applies the animation to the text */
+    .blinking-text {
+        animation: blink-animation 1.5s linear infinite;
+        color: inherit; /* Keeps your default text color */
+        cursor: pointer;
+    }
+
+    /* Pauses the blinking when the user hovers over it to make clicking easier */
+    .blinking-text:hover {
+        animation: none;
+        opacity: 1;
+        color: #f70f02; /* Turns Bootstrap blue on hover, optional */
+    }
+</style>
+
+.field-photo {
+    width: 100% !important;
+    height: 150px !important;  /* Reduced this number to shrink the photos */
+    object-fit: cover !important;
+    cursor: zoom-in;
+    transition: transform 0.3s ease;
+}
+
+.field-photo:hover {
+    transform: scale(1.05);
+    z-index: 10;
+}

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<!-- ADDED data-bs-theme="light" for Bootstrap 5.3's native dark mode support -->
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Personal portfolio">
+    <title>Evgenii Baiakhmetov | Research Output</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- CSS for the DNA Matrix Easter Egg & Toggle Button -->
+    <style>
+        #matrixCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 9999; /* Ensures it covers everything */
+            pointer-events: none; /* Allows clicking through the code */
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        /* =========================================================
+           TOGGLE BUTTON COLOR CONTROLS (Matched with index.html)
+           ========================================================= */
+        .form-check-input {
+            background-color: #ADB5BD !important;
+            border-color: #ADB5BD !important;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23ffffff'/%3e%3c/svg%3e") !important;
+        }
+        .form-check-input:checked {
+            background-color: #ADB5BD !important;
+            border-color: #ADB5BD !important;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23000000'/%3e%3c/svg%3e") !important;
+        }
+        .form-check-input:focus {
+            box-shadow: none !important; 
+            outline: none !important; 
+        }
+        /* ========================================================= */
+    </style>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+
+    <!-- Matrix Canvas (Hidden by default) -->
+    <canvas id="matrixCanvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-3" href="index.html">
+                Evgenii Baiakhmetov
+                <!-- ADDED id="matrixLogo" -->
+                <img src="logo.svg"
+                     id="matrixLogo"
+                     alt="Evgenii Baiakhmetov" 
+                     class="rounded-circle flex-shrink-0"
+                     style="width: 1.8em; height: 1.8em; object-fit: cover; border: 2px solid #fff;">
+            </a>
+            
+            <!-- Mobile Menu Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center gap-3 gap-lg-2">
+                    <li class="nav-item"><a class="nav-link" href="cv.html">CV</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="Research_Output.html">Research Output</a></li>
+                    <li class="nav-item"><a class="nav-link" href="fieldwork.html">Fieldwork</a></li>
+                    <li class="nav-item"><a class="nav-link" href="procrastination.html">Procrastination</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+
+                    <li class="nav-item theme-toggle-wrapper d-flex align-items-center">
+                        <div class="form-check form-switch m-0 d-flex align-items-center">
+                            <input class="form-check-input mt-0" type="checkbox" id="theme-toggle" role="switch">
+                            <label class="form-check-label text-white ms-2" for="theme-toggle"></label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow-1 container py-5" style="padding-bottom: 100px !important;">  
+
+        <!-- Peer-Reviewed Publications Section -->
+        <section class="mb-3">
+            <h2 class="fw-bold fs-2 border-bottom pb-2">Selected Peer-Reviewed Publications</h2>
+            <ul class="fs-5 mt-2">
+                <li class="mb-2">
+                    <strong>Baiakhmetov E., Radbouchoom S., Noskova E., Tomlinson K., Romanets R. & Olonova M.</strong> <br>
+                    <span class="text-muted fs-6">Communications Biology (Accepted) | 2026</span>
+                    <a href="https://doi.org/XXY" class="text-decoration-none">
+                        <p class="mb-0 fs-6">Genomic and palaeoclimatic data reveal Pleistocene adaptation and diversification of non-model bluegrasses (Poa sect. Stenopoa) in cold, arid environments</p>
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <strong>Zhang Q.J., Baiakhmetov E., Dai P.G., Zhang Y.Y., Wu X.Y., Jiang X. & Li Z.H.</strong> <br>
+                    <span class="text-muted fs-6">Plant Physiology (Accepted) | 2026</span>
+                    <a href="https://doi.org/YYY" class="text-decoration-none">
+                        <p class="mb-0 fs-6">Multi-omics of the endangered Acer miaotaiense provides insights into nervonic acid biosynthesis, population evolution and environmental adaptation</p>
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <strong>Kriuchkova E.A., Baiakhmetov E., Nobis M. & Gudkova P.</strong> <br>
+                    <span class="text-muted fs-6">Ecology and Evolution | 2023</span>
+                    <a href="https://doi.org/10.1002/ece3.9943" class="text-decoration-none">
+                        <p class="mb-0 fs-6">First insight into the phylogeny of fine-leaved Festuca in the Altai Mountain Country based on genome-wide genotyping</p>
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <strong>Baiakhmetov E., Guyomar C., Shelest E., Nobis M. & Gudkova P.</strong> <br>
+                    <span class="text-muted fs-6">Scientific reports | 2021</span>
+                    <a href="https://doi.org/10.1038/s41598-021-94068-w" class="text-decoration-none">
+                        <p class="mb-0 fs-6">The first draft genome of feather grasses using SMRT sequencing and its implications in molecular studies of Stipa</p>
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <strong>Baiakhmetov E., Ryzhakova D., Nobis M. & Gudkova P.</strong> <br>
+                    <span class="text-muted fs-6">BMC Plant Biology | 2021</span>
+                    <a href="https://doi.org/10.1186/s12870-021-03287-w" class="text-decoration-none">
+                        <p class="mb-0 fs-6">Evidence for extensive hybridisation and past introgression events in feather grasses using genome-wide SNP genotyping</p>
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <strong>Baiakhmetov E., Nowak A., Gudkova P. & Nobis M.</strong> <br>
+                    <span class="text-muted fs-6">Scientific reports | 2020</span>
+                    <a href="https://doi.org/10.1038/s41598-020-70582-1" class="text-decoration-none">
+                        <p class="mb-0 fs-6">Morphological and genome-wide evidence for natural hybridisation within the genus Stipa (Poaceae)</p>
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <strong>Nobis M., Gudkova P., Baiakhmetov E., et al.</strong> <br>
+                    <span class="text-muted fs-6">Perspectives in Plant Ecology, Evolution and Systematics | 2019</span>
+                    <a href="https://doi.org/10.1016/j.ppees.2019.05.001" class="text-decoration-none">
+                        <p class="mb-0 fs-6">Hybridisation, introgression events and cryptic speciation in Stipa (Poaceae): A case study of the Stipa heptapotamica hybrid-complex</p>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Theses & Tutorials Section (renamed from "Other") -->
+        <section class="mb-3">
+            <h2 class="fw-bold fs-2 border-bottom pb-2">Thesis & Tutorials</h2>
+            <ul class="fs-5 mt-3">
+                <li class="mb-2">
+                    <strong>Baiakhmetov E.</strong> <br>
+                    <span class="text-muted fs-6">GitHub | 2025</span>
+                    <a href="https://niwdoog.github.io/Genome_Assembly_XTBG_2025" class="text-decoration-none">
+                        <p class="mb-0 fs-6">Tutorial: Quality check and genome assembly using Illumina, ONT, HiFi, and Hi-C data</p>
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <strong>Baiakhmetov E.</strong> <br>
+                    <span class="text-muted fs-6">GitHub | 2022</span>
+                    <a href="https://niwdoog.github.io/Genome_Assembly_Long_Reads_Hi-C" class="text-decoration-none">
+                        <p class="mb-0 fs-6">Tutorial: Genome assembly and annotation of Arabidopsis thaliana using ONT, HiFi, Illumina and Hi-C data</p>
+                    </a>
+                </li>
+                <li class="mb-2">
+                    <strong>Baiakhmetov E.</strong> <br>
+                    <span class="text-muted fs-6">PhD thesis | 2022</span>
+                    <a href="https://doi.org/10.5281/zenodo.7265413" class="text-decoration-none">
+                        <p class="mb-0 fs-6">Inferring hybridisation and introgression processes within Stipa (Poaceae)</p>
+                    </a>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Selected Conferences Section -->
+        <section class="mb-3">
+            <h2 class="fw-bold fs-2 border-bottom pb-2">Selected Conferences</h2>
+            <ul class="fs-5 mt-3">
+                <li class="mb-2">
+                    <strong>Baiakhmetov E. et al.</strong> <br>
+                    <span class="text-muted fs-6">XTBG (China) | 2025</span>
+                    <p class="mb-0 fs-6">Poster: Pleistocene adaptation and diversification in cold, arid environments: genomic and palaeoclimate insights from non-model bluegrasses</p>
+                </li>
+                <li class="mb-2">
+                    <strong>Baiakhmetov E. et al.</strong> <br>
+                    <span class="text-muted fs-6">Botanical Society of America (USA) | 2021</span>
+                    <p class="mb-0 fs-6">Poster (Virtual): Evidence for extensive hybridisation and past introgression events in feather grasses using genome-wide SNP genotyping</p>
+                </li>
+                <li class="mb-2">
+                    <strong>Baiakhmetov E. & Gudkova P.</strong> <br>
+                    <span class="text-muted fs-6">MSU (Russia) | 2018</span>
+                    <p class="mb-0 fs-6">Oral presentation: New variable chloroplast markers for evaluating phylogeny within the sect. Leiostipa (Stipa, Poaceae)</p>
+                </li>
+            </ul>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3 fixed-bottom">
+        &copy; 2026. Publish or Perish Enterprise. All Rights Reversed.
+    </footer>
+
+    <!-- Bootstrap JS + your script.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+
+    <!-- DNA Matrix Easter Egg Script -->
+    <script>
+        (function() {
+            const canvas = document.getElementById('matrixCanvas');
+            const ctx = canvas.getContext('2d');
+            const matrixLogo = document.getElementById('matrixLogo');
+
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            // DNA Bases + Numbers
+            const latin = 'ACGT';
+            const nums = '012-9';
+            const alphabet = latin + nums;
+
+            const fontSize = 16;
+            let columns = canvas.width / fontSize;
+            let drops = [];
+            
+            // FIX: Randomize the starting positions of the drops so they fall asynchronously from the very first frame!
+            for (let x = 0; x < columns; x++) {
+                drops[x] = Math.floor(Math.random() * (canvas.height / fontSize)); 
+            }
+
+            let matrixInterval;
+            let isMatrixActive = false;
+
+            const drawMatrix = () => {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                ctx.fillStyle = '#0F0'; 
+                ctx.font = fontSize + 'px monospace';
+                
+                for (let i = 0; i < drops.length; i++) {
+                    const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                    
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    drops[i]++;
+                }
+            };
+
+            const startMatrix = () => {
+                if (!isMatrixActive) { 
+                    isMatrixActive = true; 
+                    canvas.style.opacity = '1'; 
+                    matrixInterval = setInterval(drawMatrix, 33); 
+                }
+            };
+
+            const stopMatrix = () => {
+                if (isMatrixActive) {
+                    isMatrixActive = false; 
+                    canvas.style.opacity = '0';
+                    setTimeout(() => { 
+                        if (!isMatrixActive) { 
+                            clearInterval(matrixInterval); 
+                            ctx.clearRect(0, 0, canvas.width, canvas.height); 
+                        } 
+                    }, 500);
+                }
+            };
+
+            // DESKTOP: Trigger on mouse hover
+            window.addEventListener('mousemove', (e) => {
+                if (!matrixLogo) return;
+                const rect = matrixLogo.getBoundingClientRect();
+                const logoX = rect.left + rect.width / 2;
+                const logoY = rect.top + rect.height / 2;
+                
+                const distance = Math.hypot(e.clientX - logoX, e.clientY - logoY);
+                
+                if (distance < 80) {
+                    startMatrix();
+                } else {
+                    stopMatrix();
+                }
+            });
+
+            // MOBILE: Trigger on tap (Runs for 4 seconds then fades out)
+            if (matrixLogo) {
+                matrixLogo.addEventListener('touchstart', (e) => {
+                    startMatrix();
+                    setTimeout(stopMatrix, 4000);
+                }, { passive: true });
+            }
+
+            // Keep canvas sized correctly on rotation
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                columns = canvas.width / fontSize;
+                drops = [];
+                // FIX: Ensure resizing also applies random staggers
+                for (let x = 0; x < columns; x++) {
+                    drops[x] = Math.floor(Math.random() * (canvas.height / fontSize));
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
