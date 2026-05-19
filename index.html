@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
+<!-- Changed default to dark -->
+<html lang="en" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +20,9 @@
             opacity: 0; transition: opacity 0.5s ease;
         }
 
+        /* =========================================================
+           TOGGLE BUTTON COLOR CONTROLS
+           ========================================================= */
         .form-check-input {
             background-color: #ADB5BD !important;
             border-color: #ADB5BD !important;
@@ -31,6 +35,7 @@
         }
         .form-check-input:focus { box-shadow: none !important; outline: none !important; }
 
+        /* ----- 3D Solar System Container ----- */
         .solar-system-container {
             position: relative; width: 100%; flex-grow: 1;
             cursor: grab; background: #212529; transition: background 0.6s ease;
@@ -56,6 +61,12 @@
         }
         @media (max-width: 768px) { .planet-label { font-size: 0.8rem; } }
     </style>
+
+    <!-- Check theme before the page renders to prevent white flash, DEFAULT TO DARK -->
+    <script>
+        const preTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-bs-theme', preTheme);
+    </script>
 </head>
 
 <body class="d-flex flex-column min-vh-100 overflow-hidden">
@@ -103,7 +114,7 @@
 
     <script>
         /* ==========================================
-           0. MATRIX EASTER EGG (Now Asynchronous Instantly!)
+           0. MATRIX EASTER EGG
            ========================================== */
         (function() {
             const canvas = document.getElementById('matrixCanvas');
@@ -112,12 +123,9 @@
             canvas.width = window.innerWidth; canvas.height = window.innerHeight;
             const alphabet = 'ACGT012-9'; const fontSize = 16;
             let columns = canvas.width / fontSize; let drops = [];
-            
-            // FIX: Randomize the starting positions of the drops so they fall asynchronously from the very first frame!
             for (let x = 0; x < columns; x++) {
                 drops[x] = Math.floor(Math.random() * (canvas.height / fontSize)); 
             }
-            
             let matrixInterval; let isMatrixActive = false;
 
             const drawMatrix = () => {
@@ -134,21 +142,15 @@
 
             const startMatrix = () => {
                 if (!isMatrixActive) { 
-                    isMatrixActive = true; 
-                    canvas.style.opacity = '1'; 
-                    matrixInterval = setInterval(drawMatrix, 33); 
+                    isMatrixActive = true; canvas.style.opacity = '1'; matrixInterval = setInterval(drawMatrix, 33); 
                 }
             };
 
             const stopMatrix = () => {
                 if (isMatrixActive) {
-                    isMatrixActive = false; 
-                    canvas.style.opacity = '0';
+                    isMatrixActive = false; canvas.style.opacity = '0';
                     setTimeout(() => { 
-                        if (!isMatrixActive) { 
-                            clearInterval(matrixInterval); 
-                            ctx.clearRect(0, 0, canvas.width, canvas.height); 
-                        } 
+                        if (!isMatrixActive) { clearInterval(matrixInterval); ctx.clearRect(0, 0, canvas.width, canvas.height); } 
                     }, 500);
                 }
             };
@@ -162,15 +164,13 @@
 
             if (matrixLogo) {
                 matrixLogo.addEventListener('touchstart', (e) => {
-                    startMatrix();
-                    setTimeout(stopMatrix, 4000);
+                    startMatrix(); setTimeout(stopMatrix, 4000);
                 }, { passive: true });
             }
 
             window.addEventListener('resize', () => {
                 canvas.width = window.innerWidth; canvas.height = window.innerHeight;
                 columns = canvas.width / fontSize; drops = [];
-                // FIX: Ensure resizing also applies random staggers
                 for (let x = 0; x < columns; x++) drops[x] = Math.floor(Math.random() * (canvas.height / fontSize));
             });
         })();
@@ -183,9 +183,15 @@
             const CONFIG = {
                 dragSensitivity: 0.00005,
                 momentumFriction: 0.92,
-                planetSpinSpeed: 0.002,   
-                discoverySpeed: 0.004,    
-                sunSpinSpeed: 0.0004      
+                discoverySpeed: 0.004,
+                
+                // SUN SPIN
+                sunSpinPeriod: 5.12, 
+                
+                // OPTICAL ILLUSION FIXER
+                // Set to 1 for your strict mathematical values.
+                // Change to 10 or 30 if Jupiter/Earth look blurry or are spinning backwards due to monitor refresh rates!
+                visualSpinMultiplier: 1 
             };
 
             const container = document.getElementById('solarContainer');
@@ -234,13 +240,15 @@
             );
             solarSystem.add(sunMesh);
 
-            // REALISTIC ORBITAL PERIODS 
+            // ========================================================
+            // PRECISE ORBITAL & AXIAL SPIN PERIODS (In Seconds)
+            // ========================================================
             const planets = [
-                { name: 'Mercury', label: 'CV', radius: 0.3, orbit: 3.0, period: 14.5, url: 'cv.html', texture: textureURLs.mercury, bump: bumpURLs.mercury },
-                { name: 'Venus', label: 'Research Output', radius: 0.55, orbit: 4.5, period: 37.0, url: 'Research_Output.html', texture: textureURLs.venus, bump: bumpURLs.venus },
-                { name: 'Earth', label: 'Fieldwork', radius: 0.6, orbit: 6.0, period: 60.0, url: 'fieldwork.html', texture: textureURLs.earth, bump: bumpURLs.earth },
-                { name: 'Mars', label: 'Procrastination', radius: 0.4, orbit: 7.8, period: 113.0, url: 'procrastination.html', texture: textureURLs.mars, bump: bumpURLs.mars },
-                { name: 'Jupiter', label: 'Contact', radius: 1.1, orbit: 10.0, period: 712.0, url: 'contact.html', texture: textureURLs.jupiter, bump: bumpURLs.jupiter },
+                { name: 'Mercury', label: 'CV', radius: 0.3, orbit: 3.0, period: 14.5, spinPeriod: 9.384, url: 'cv.html', texture: textureURLs.mercury, bump: bumpURLs.mercury },
+                { name: 'Venus', label: 'Research Output', radius: 0.55, orbit: 4.5, period: 37.0, spinPeriod: -38.88, url: 'Research_Output.html', texture: textureURLs.venus, bump: bumpURLs.venus },
+                { name: 'Earth', label: 'Fieldwork', radius: 0.6, orbit: 6.0, period: 60.0, spinPeriod: 0.16, url: 'fieldwork.html', texture: textureURLs.earth, bump: bumpURLs.earth },
+                { name: 'Mars', label: 'Procrastination', radius: 0.4, orbit: 7.8, period: 113.0, spinPeriod: 0.162, url: 'procrastination.html', texture: textureURLs.mars, bump: bumpURLs.mars },
+                { name: 'Jupiter', label: 'Contact', radius: 1.1, orbit: 10.0, period: 712.0, spinPeriod: 0.067, url: 'contact.html', texture: textureURLs.jupiter, bump: bumpURLs.jupiter },
             ];
 
             const planetObjects = [];
@@ -260,7 +268,16 @@
                 mesh.name = p.name;
                 pivot.add(mesh);
                 
-                planetObjects.push({ name: p.name, label: p.label, mesh: mesh, pivot: pivot, baseAngle: baseAngle, period: p.period, url: p.url });
+                planetObjects.push({ 
+                    name: p.name, 
+                    label: p.label, 
+                    mesh: mesh, 
+                    pivot: pivot, 
+                    baseAngle: baseAngle, 
+                    period: p.period, 
+                    spinPeriod: p.spinPeriod, 
+                    url: p.url 
+                });
             });
 
             // Orbit rings 
@@ -445,7 +462,7 @@
                 }
             });
 
-            // Theme toggle
+            // Theme toggle (Includes Star & Orbit Color Update)
             const themeToggle = document.getElementById('theme-toggle');
             themeToggle.addEventListener('change', () => {
                 const isDark = themeToggle.checked;
@@ -457,7 +474,8 @@
                 orbitLineMaterials.forEach(mat => mat.color.setHex(activeColor));
             });
             
-            const savedTheme = localStorage.getItem('theme') || 'light';
+            // Load theme on start (DEFAULT TO DARK)
+            const savedTheme = localStorage.getItem('theme') || 'dark';
             document.documentElement.setAttribute('data-bs-theme', savedTheme);
             themeToggle.checked = savedTheme === 'dark';
             
@@ -473,14 +491,21 @@
                     rotationTarget.x *= CONFIG.momentumFriction;
                     rotationTarget.y *= CONFIG.momentumFriction;
                 }
+                
+                // Allow the user to drag to rotate the entire system
                 solarSystem.rotation.x += rotationTarget.x;
                 solarSystem.rotation.y += rotationTarget.y; 
 
+                // performance.now() tracks milliseconds since the page loaded, giving exact time representation.
                 const timeSec = performance.now() / 1000;
 
                 labelDivs.forEach(item => {
+                    // Precise mathematically synced Orbit
                     item.planet.pivot.rotation.y = item.planet.baseAngle + (timeSec * (Math.PI * 2) / item.planet.period);
-                    item.planet.mesh.rotation.y += CONFIG.planetSpinSpeed;
+                    
+                    // Precise mathematically synced Axial Spin (Adjusted by visual multiplier)
+                    const adjustedSpinPeriod = item.planet.spinPeriod * CONFIG.visualSpinMultiplier;
+                    item.planet.mesh.rotation.y = (timeSec * (Math.PI * 2) / adjustedSpinPeriod);
                     
                     const worldPos = new THREE.Vector3();
                     item.planet.mesh.getWorldPosition(worldPos);
@@ -492,15 +517,18 @@
                     item.div.style.opacity = (screenPos.z > 1 || !isHovered) ? 0 : 1;
                 });
 
-                sunMesh.rotation.y += CONFIG.sunSpinSpeed;
+                // Sun Spin (Using exact math: 5.12 seconds)
+                const adjustedSunPeriod = CONFIG.sunSpinPeriod * CONFIG.visualSpinMultiplier;
+                sunMesh.rotation.y = (timeSec * (Math.PI * 2) / adjustedSunPeriod);
 
-                // Move Discovery One
+                // Move Discovery One across the screen
                 discoveryShip.position.x += CONFIG.discoverySpeed;
                 if (discoveryShip.position.x > 25) {
                     discoveryShip.position.x = -25;
                 }
                 discoveryShip.rotation.z = -0.05 + Math.sin(Date.now() * 0.0008) * 0.03;
 
+                // Flicker the yellow flames on the engines
                 if (discoveryShip.userData.flames) {
                     discoveryShip.userData.flames.forEach(f => {
                         const flicker = 0.85 + Math.random() * 0.3;
