@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://niwdoog.github.io/Evgenii-Baiakhmetov/sitemap.xml
